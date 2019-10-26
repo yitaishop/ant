@@ -18,7 +18,11 @@ cc.Class({
         antPrefeb:{
             default: null,
             type: cc.Prefab,
-          },
+        },
+        bombPrefeb:{
+            default: null,
+            type: cc.Prefab,
+        },
         golds:{
             default:null,
             type:cc.Node,
@@ -137,12 +141,20 @@ cc.Class({
     insertGood(){
         this.setBar(this.touchCount);
         if (this.touchCount <=0 ){
-            let good = cc.instantiate(this.goods);
-            good.getComponent("searchgoods").weight = this.random(this.foodLow,this.foodHigh);
-            good.parent = this.node;
-            good.setPosition(this.getRandomPos());
-            this.addGoodToAnts(good);
-            this.touchCount = this.random(this.touchLow,this.touchHigh);
+            var rand = this.random(1,100);
+            if(rand <=15){
+                 let bomb = cc.instantiate(this.bombPrefeb);
+                 bomb.parent = this.node;
+                 bomb.setPosition(this.getRandomPos());
+                 this.addGoodToAnts(bomb);
+            }else{
+                 let good = cc.instantiate(this.goods);
+                 good.getComponent("searchgoods").weight = this.random(this.foodLow,this.foodHigh);
+                 good.parent = this.node;
+                 good.setPosition(this.getRandomPos());
+                 this.addGoodToAnts(good);
+            }
+            this.touchCount = 5 + this.ants.length*2;
             this.total = this.touchCount;
             return
         }

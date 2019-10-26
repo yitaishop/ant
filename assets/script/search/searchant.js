@@ -93,6 +93,19 @@ cc.Class({
                     cc.game.emit("updateGolds",goods.getComponent("searchgoods").weight);
                 }
                 break;
+            case "bomb":
+                if (!this.isCarring && this.currNode == other.node) {
+                    this.isCarring = true;
+                    other.node.destroy();
+                    this.movespeed = 0;
+                    this.scheduleOnce(function(){
+                        this.movespeed = this._movespeed;
+                        this.isCarring = false;
+                        this.removeElement();
+                        this.isPause = false;
+                    }, 3);
+                }
+                break;
         }
     },
 

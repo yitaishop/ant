@@ -48,7 +48,7 @@
     "appid": "wx896c82b92b500763",
     "orientation": "portrait",
     "separate_engine": false,
-    "subContext": ""
+    "subContext": "ant-wx-open-data-project"
   },
   "xxteaKey": "d865a905-8819-47",
   "zipCompressJs": true
